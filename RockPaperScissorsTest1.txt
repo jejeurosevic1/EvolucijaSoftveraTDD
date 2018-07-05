@@ -1,0 +1,38 @@
+import org.junit.Test;
+
+import org.junit.runner.RunWith;
+
+import org.mockito.Mock;
+
+import org.mockito.Mockito;
+
+import org.mockito.runners.MockitoJUnitRunner;
+
+
+import java.util.Arrays;
+
+import static org.junit.Assert.*;
+
+
+
+@RunWith(MockitoJUnitRunner.class)
+
+public class RockPaperScissorsTest1 {
+
+    
+	@Mock
+    MovesService movesService;
+
+    
+
+	@Test
+    
+	public void getComputerMoveTest() {
+        
+		RockPaperScissors1 rps = new RockPaperScissors1();
+
+
+	        assertTrue(Arrays.asList("Rock", "Paper", "Scissors").contains(rps.getComputerMove()));
+    
+	}
+}

@@ -1,0 +1,25 @@
+public class MovesService {
+
+    public Move getRandomMove() {
+        Move computerMove;
+
+        int computerInt = (int)(Math.random() * 3);
+
+        switch(computerInt)
+        {
+            case 0:
+                computerMove = Move.R;
+                break;
+            case 1:
+                computerMove = Move.P;
+                break;
+            case 2:
+                computerMove = Move.S;
+                break;
+            default:
+                computerMove = Move.R;
+        }
+
+        return computerMove;
+    }
+}

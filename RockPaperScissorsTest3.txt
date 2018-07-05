@@ -1,0 +1,103 @@
+import org.junit.Test;
+
+import org.junit.runner.RunWith;
+
+import org.mockito.Mock;
+
+import org.mockito.Mockito;
+
+import org.mockito.runners.MockitoJUnitRunner;
+
+
+import java.util.Arrays;
+
+import static org.junit.Assert.*;
+
+
+
+@RunWith(MockitoJUnitRunner.class)
+
+public class RockPaperScissorsTest3 {
+
+    
+	@Mock
+    MovesService movesService;
+
+    
+
+	@Test
+    
+	public void getComputerMoveTest() {
+        
+		RockPaperScissors3 rps = new RockPaperScissors3();
+
+
+	        assertTrue(Arrays.asList("Rock", "Paper", "Scissors").contains(rps.getComputerMove()));
+    
+	}
+
+
+	@Test
+   	public void testUserWin1() {
+		Mockito.when(movesService.getRandomMove()).thenReturn(Move.R);
+        	RockPaperScissors3 rps = new RockPaperScissors3(movesService);
+        	rps.setPersonMove(Move.P);
+        
+        	assertTrue(rps.getWinner().equals("Paper covers Rock - Person wins!"));
+    }
+
+    	@Test
+    	public void testUserWin2() {
+        	Mockito.when(movesService.getRandomMove()).thenReturn(Move.P);
+        	RockPaperScissors3 rps = new RockPaperScissors3(movesService);
+        	rps.setPersonMove(Move.R);
+        
+        	assertTrue(rps.getWinner().equals("Paper covers Rock - Computer wins!"));
+
+    }
+
+@Test
+    public void testComputerWin1() {
+        Mockito.when(movesService.getRandomMove()).thenReturn(Move.P);
+        RockPaperScissors3 rps = new RockPaperScissors3(movesService);
+        rps.setPersonMove(Move.R);
+
+        assertTrue(rps.getWinner().equals("Paper covers Rock - Computer wins!"));
+    }
+    
+    @Test
+    public void testComputerWin2() {
+        Mockito.when(movesService.getRandomMove()).thenReturn(Move.S);
+        RockPaperScissors3 rps = new RockPaperScissors3(movesService);
+        rps.setPersonMove(Move.R);
+
+        assertTrue(rps.getWinner().equals("Rock crushes Scissors - Person wins!"));
+    }
+
+@Test
+    public void testTie1() {
+        Mockito.when(movesService.getRandomMove()).thenReturn(Move.S);
+        RockPaperScissors3 rps = new RockPaperScissors3(movesService);
+        rps.setPersonMove(Move.S);
+
+        assertTrue(rps.getWinner().equals("It's a Scissors tie!"));
+    }
+    
+    @Test
+    public void testTie2() {
+        Mockito.when(movesService.getRandomMove()).thenReturn(Move.R);
+        RockPaperScissors3 rps = new RockPaperScissors3(movesService);
+        rps.setPersonMove(Move.R);
+
+        assertTrue(rps.getWinner().equals("It's a Rock tie!"));
+    }
+    
+    @Test
+    public void testTie3() {
+        Mockito.when(movesService.getRandomMove()).thenReturn(Move.P);
+        RockPaperScissors3 rps = new RockPaperScissors3(movesService);
+        rps.setPersonMove(Move.P);
+
+        assertTrue(rps.getWinner().equals("It's a Paper tie!"));
+    }
+}

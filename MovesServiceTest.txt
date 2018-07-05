@@ -1,0 +1,15 @@
+import org.junit.Test;
+
+import java.util.Arrays;
+
+import static org.junit.Assert.assertTrue;
+
+public class MovesServiceTest {
+
+    @Test
+    public void getComputerMoveTest() {
+        MovesService movesService = new MovesService();
+
+        assertTrue(Arrays.asList(Move.R, Move.P, Move.S).contains(movesService.getRandomMove()));
+    }
+}

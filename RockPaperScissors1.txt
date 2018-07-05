@@ -1,0 +1,31 @@
+public class RockPaperScissors1
+{
+    private Move computerMove;
+ 
+    private MovesService movesService;
+
+    public RockPaperScissors1() {
+        this.movesService = new MovesService();
+        computerMove = movesService.getRandomMove();
+    }
+
+    public RockPaperScissors1(MovesService movesService) {
+        this.movesService = movesService;
+    }
+
+    public String getComputerMove()
+    {
+        if(computerMove.equals(Move.R))
+            return "Rock";
+        else if (computerMove.equals(Move.S))
+            return "Scissors";
+        else
+            return "Paper";
+    }
+
+    public static void main(String[] args) {
+        RockPaperScissors1 rockPaperScissors = new RockPaperScissors1();
+        //rockPaperScissors.setPersonMove(Move.R);
+        //System.out.println(rockPaperScissors.getWinner());
+    }
+}

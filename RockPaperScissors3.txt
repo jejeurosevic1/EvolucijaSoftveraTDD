@@ -1,0 +1,88 @@
+public class RockPaperScissors3
+{
+    private Move personMove;
+    private Move computerMove;
+ 
+    private MovesService movesService;
+
+    public RockPaperScissors3() {
+        this.movesService = new MovesService();
+        computerMove = movesService.getRandomMove();
+    }
+
+    public RockPaperScissors3(MovesService movesService) {
+        this.movesService = movesService;
+    }
+
+    public void setPersonMove(Move move) {
+        this.personMove = move;
+    }
+
+    public String getComputerMove()
+    {
+        if(computerMove.equals(Move.R))
+            return "Rock";
+        else if (computerMove.equals(Move.S))
+            return "Scissors";
+        else
+            return "Paper";
+    }
+
+    public String getPersonMove()
+    {
+        if(personMove.equals(Move.R))
+            return "Rock";
+        else if (personMove.equals(Move.S))
+            return "Scissors";
+        else
+            return "Paper";
+    }
+
+
+    public String getWinner()
+    {
+        this.computerMove = movesService.getRandomMove();
+
+        String winner = "";
+
+        if(computerMove.equals(personMove))
+        {
+            if(computerMove.equals(Move.R))
+                winner = "It's a Rock tie!";
+            else if (computerMove.equals(Move.S))
+                winner = "It's a Scissors tie!";
+            else
+                winner = "It's a Paper tie!";
+        }
+        else if (computerMove.equals(Move.R))
+        {
+            if (personMove.equals(Move.S))
+                winner = "Rock crushes Scissors - computer wins!";
+            else
+                winner = "Paper covers Rock - Person wins!";
+        }
+        else if (computerMove.equals(Move.S))
+        {
+            if (personMove.equals(Move.R))
+                winner = "Rock crushes Scissors - Person wins!";
+            else
+                winner = "Scissors cuts paper - Computer wins!";
+        }
+        else
+        {
+            if (personMove.equals(Move.R))
+                winner = "Paper covers Rock - Computer wins!";
+            else
+                winner = "Scissors cut Paper - Person wins!";
+        }
+
+
+        return winner;
+    }
+
+    public static void main(String[] args) {
+        RockPaperScissors3 rockPaperScissors = new RockPaperScissors3();
+        rockPaperScissors.setPersonMove(Move.R);
+        System.out.println(rockPaperScissors.getWinner());
+    }
+}
